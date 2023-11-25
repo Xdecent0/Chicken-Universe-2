@@ -17,10 +17,10 @@ class NormalMode:
         self.game_data.load()
         self.score = 0
 
-        self.coins_icon = pygame.image.load('./Assets/Icons/heart.png')
-        self.lives_icon = pygame.image.load('./Assets/Icons/money.png')
-        self.score_icon = pygame.image.load('./Assets/Icons/money.png')
-        self.highscore_icon = pygame.image.load('./Assets/Icons/money.png')
+        self.coins_icon = pygame.image.load('./ThePyGame/Assets/Icons/heart.png')
+        self.lives_icon = pygame.image.load('./ThePyGame/Assets/Icons/money.png')
+        self.score_icon = pygame.image.load('./ThePyGame/Assets/Icons/money.png')
+        self.highscore_icon = pygame.image.load('./ThePyGame/Assets/Icons/money.png')
 
 
         self.screen = pygame.display.set_mode((self.window_width, self.window_height))
@@ -49,7 +49,7 @@ class NormalMode:
         self.back_text = self.font.render("Back", True, (255, 255, 255))
         self.back_text_rect = self.back_text.get_rect(center=self.back_button_rect.center)
 
-        self.player = Player(f'./Assets/Players/{game_data.playerIndex}.png', (400, 200), size=(30, 60), upper_limit=50, lower_limit=500)
+        self.player = Player(f'./ThePyGame/Assets/Players/{game_data.playerIndex}.png', (400, 200), size=(30, 60), upper_limit=50, lower_limit=500)
 
         self.panel_width = 894
         self.panel_height = 100
@@ -185,12 +185,12 @@ class NormalMode:
             should_spawn_coin = random.randint(1, 5) == 1
 
             if should_spawn_coin:
-                coin = Coin('./Assets/Icons/money.png', (1100, random.randint(130, 470)))
+                coin = Coin('./ThePyGame/Assets/Icons/money.png', (1100, random.randint(130, 470)))
                 self.coin_group.add(coin)
             else:
-                obstacle_options = [Obstacle(f'./Assets/Obstacles/Planets/{self.game_data.planetIndex}.png', (1100, random.randint(130, 470))),
-                                Obstacle(f'./Assets/Obstacles/Rocks/{self.game_data.rockIndex}.png', (1100, random.randint(130, 470)), (30, 70)),
-                                SmallRocks(f'./Assets/Obstacles/UnderRocks/{self.game_data.smallRockIndex}.png')]
+                obstacle_options = [Obstacle(f'./ThePyGame/Assets/Obstacles/Planets/{self.game_data.planetIndex}.png', (1100, random.randint(130, 470))),
+                                Obstacle(f'./ThePyGame/Assets/Obstacles/Rocks/{self.game_data.rockIndex}.png', (1100, random.randint(130, 470)), (30, 70)),
+                                SmallRocks(f'./ThePyGame/Assets/Obstacles/UnderRocks/{self.game_data.smallRockIndex}.png')]
 
                 obstacle = random.choice(obstacle_options)
                 self.obstacle_group.add(obstacle)

@@ -12,17 +12,17 @@ class ShopScene:
 
         self.back_button_rect = pygame.Rect(10, 10, 150, 50) 
 
-        self.coins_icon = pygame.image.load('./Assets/Icons/money.png')
+        self.coins_icon = pygame.image.load('./ThePyGame/Assets/Icons/money.png')
 
-        self.back_icon = pygame.image.load('./Assets/Icons/Buttons/return.png')
+        self.back_icon = pygame.image.load('./ThePyGame/Assets/Icons/Buttons/return.png')
 
         self.font = pygame.font.Font(None, 32)
 
         self.buy_buttons = [
-            {"name": "Random Planet", "price": 20, "icon": pygame.image.load('./Assets/Obstacles/Planets/1.png')},
-            {"name": "Random Rock", "price": 15, "icon": pygame.image.load('./Assets/Obstacles/Rocks/1.png')},
-            {"name": "Random Skin", "price": 25, "icon": pygame.image.load('./Assets/Players/1.png')},
-            {"name": "Random Small Rock", "price": 10, "icon": pygame.image.load('./Assets/Obstacles/UnderRocks/1.png')}
+            {"name": "Random Planet", "price": 20, "icon": pygame.image.load('./ThePyGame/Assets/Obstacles/Planets/1.png')},
+            {"name": "Random Rock", "price": 15, "icon": pygame.image.load('./ThePyGame/Assets/Obstacles/Rocks/1.png')},
+            {"name": "Random Skin", "price": 25, "icon": pygame.image.load('./ThePyGame/Assets/Players/1.png')},
+            {"name": "Random Small Rock", "price": 10, "icon": pygame.image.load('./ThePyGame/Assets/Obstacles/UnderRocks/1.png')}
         ]
 
         panel_width = 200

@@ -19,12 +19,12 @@ class HardcoreMode(NormalMode):
             should_spawn_coin = random.randint(1, 5) == 1
 
             if should_spawn_coin:
-                coin = Coin('./Assets/Icons/money.png', (1100, random.randint(130, 470)), (25, 30), 6)
+                coin = Coin('./ThePyGame/Assets/Icons/money.png', (1100, random.randint(130, 470)), (25, 30), 6)
                 self.coin_group.add(coin)
             else:
                 obstacle_options = [
-                    Obstacle('./Assets/Obstacles/Rocks/2.png', (1100, random.randint(130, 470)), (50, 100), 6),
-                    Obstacle('./Assets/Obstacles/Rocks/3.png', (1100, random.randint(130, 470)), (60, 120), 6),
+                    Obstacle('./ThePyGame/Assets/Obstacles/Rocks/2.png', (1100, random.randint(130, 470)), (50, 100), 6),
+                    Obstacle('./ThePyGame/Assets/Obstacles/Rocks/3.png', (1100, random.randint(130, 470)), (60, 120), 6),
                 ]
 
                 obstacle = random.choice(obstacle_options)

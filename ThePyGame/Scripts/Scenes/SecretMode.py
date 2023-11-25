@@ -11,7 +11,7 @@ class SecretMode(NormalMode):
     def __init__(self, width, height, game_data):
         super().__init__(width, height, game_data)
         self.effect = 1
-        self.effect_icon = pygame.image.load(f'./Assets/Icons/Effects/{self.effect}.png')
+        self.effect_icon = pygame.image.load(f'./ThePyGame/Assets/Icons/Effects/{self.effect}.png')
         self.effect_timer = 0
         self.effect_speed = 4
         self.effect_inversion = False
@@ -27,10 +27,10 @@ class SecretMode(NormalMode):
             should_spawn_coin = random.randint(1, 6) == 1
             self.score += 1
             if should_spawn_coin:
-                coin = Egg('./Assets/Icons/Effects/egg.png', (1100, random.randint(130, 470)), (20, 20), 6)
+                coin = Egg('./ThePyGame/Assets/Icons/Effects/egg.png', (1100, random.randint(130, 470)), (20, 20), 6)
                 self.coin_group.add(coin)
             else:
-                obstacle = Obstacle(f'./Assets/Obstacles/Rocks/{self.game_data.rockIndex}.png', (1100, random.randint(130, 485)), (70, 150), 6)
+                obstacle = Obstacle(f'./ThePyGame/Assets/Obstacles/Rocks/{self.game_data.rockIndex}.png', (1100, random.randint(130, 485)), (70, 150), 6)
                 self.obstacle_group.add(obstacle)
 
             
@@ -61,7 +61,7 @@ class SecretMode(NormalMode):
 
     def handle_coin_collected(self):
         self.effect = random.randint(2, 4)
-        self.effect_icon = pygame.image.load(f'./Assets/Icons/Effects/{self.effect}.png')
+        self.effect_icon = pygame.image.load(f'./ThePyGame/Assets/Icons/Effects/{self.effect}.png')
         self.effect_timer = 5000 
 
     def update_effects(self):
@@ -78,7 +78,7 @@ class SecretMode(NormalMode):
             self.effect = 1
             self.effect_speed = 4
             self.effect_inversion = False
-            self.effect_icon = pygame.image.load(f'./Assets/Icons/Effects/{self.effect}.png') 
+            self.effect_icon = pygame.image.load(f'./ThePyGame/Assets/Icons/Effects/{self.effect}.png') 
             self.lives =+ 1
 
     def game_over_screen(self):

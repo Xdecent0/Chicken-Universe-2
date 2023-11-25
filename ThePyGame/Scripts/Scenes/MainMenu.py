@@ -16,9 +16,9 @@ class MainMenu:
         self.screen = pygame.display.set_mode((self.width, self.height))
         pygame.display.set_caption("Chicken Universe 2")
 
-        self.settings_icon = pygame.image.load('./Assets/Icons/Buttons/settings.png')
-        self.shop_icon = pygame.image.load('./Assets/Icons/Buttons/shop.png')
-        self.exit_icon = pygame.image.load('./Assets/Icons/Buttons/exit.png')
+        self.settings_icon = pygame.image.load('./ThePyGame/Assets/Icons/Buttons/settings.png')
+        self.shop_icon = pygame.image.load('./ThePyGame/Assets/Icons/Buttons/shop.png')
+        self.exit_icon = pygame.image.load('./ThePyGame/Assets/Icons/Buttons/exit.png')
 
         self.color1 = (146, 106, 255)  # #926AFF
         self.color2 = (66, 77, 252)    # #424DFC
@@ -191,7 +191,7 @@ class MainMenu:
             self.screen.blit(self.secret_mode_text, text_rect)
 
             coins_icon_rect = pygame.Rect(self.coins_panel_rect.x + 110, self.coins_panel_rect.centery - 20, 30, 30)
-            coins_icon = pygame.image.load('./Assets/Icons/money.png')
+            coins_icon = pygame.image.load('./ThePyGame/Assets/Icons/money.png')
             self.screen.blit(pygame.transform.scale(coins_icon, (25, 30)), coins_icon_rect.topleft)
 
 

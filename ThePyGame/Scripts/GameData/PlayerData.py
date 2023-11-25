@@ -21,12 +21,12 @@ class PlayerData:
         self.smallRockIndex = 1
 
     def save(self):
-        with open("./Scripts/GameData/game_data.pkl", "wb") as file:
+        with open("./ThePyGame/Scripts/GameData/game_data.pkl", "wb") as file:
             pickle.dump(self, file)
 
     def load(self):
         try:
-            with open("./Scripts/GameData/game_data.pkl", "rb") as file:
+            with open("./ThePyGame/Scripts/GameData/game_data.pkl", "rb") as file:
                 game_data = pickle.load(file)
                 self.normalHighscore = game_data.normalHighscore
                 self.hardcoreHighscore = game_data.hardcoreHighscore

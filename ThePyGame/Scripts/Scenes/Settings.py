@@ -13,17 +13,17 @@ class SettingsMenu:
         button_height = 50
         self.back_button_rect = pygame.Rect(10, 10, button_width, button_height)
 
-        self.coins_icon = pygame.image.load('./Assets/Icons/money.png') 
-        self.back_icon = pygame.image.load('./Assets/Icons/Buttons/return.png') 
+        self.coins_icon = pygame.image.load('./ThePyGame/Assets/Icons/money.png') 
+        self.back_icon = pygame.image.load('./ThePyGame/Assets/Icons/Buttons/return.png') 
 
         self.font = pygame.font.Font(None, 32)
 
         self.reset_data_button_rect = pygame.Rect((self.width - button_width * 2) // 2, 100, button_width * 2, button_height)
-        self.reset_data_icon = pygame.image.load('./Assets/Icons/Buttons/again.png')  
+        self.reset_data_icon = pygame.image.load('./ThePyGame/Assets/Icons/Buttons/again.png')  
         self.reset_data_text = self.font.render("Reset Data", True, (255, 255, 255))
 
         self.add_coins_button_rect = pygame.Rect((self.width - button_width * 2) // 2, 160, button_width * 2, button_height)
-        self.add_coins_icon = pygame.image.load('./Assets/Icons/money.png')  
+        self.add_coins_icon = pygame.image.load('./ThePyGame/Assets/Icons/money.png')  
         self.add_coins_text = self.font.render("Add Extra Coins", True, (255, 255, 255))
 
         panel_width = 200

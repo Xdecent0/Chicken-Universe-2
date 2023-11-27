@@ -15,10 +15,12 @@ class GameObject:
         screen.blit(self.image, self.rect.topleft)
 
 class Player(GameObject):
-    def __init__(self, image_path, position, size=None, upper_limit=None, lower_limit=None):
+    def __init__(self, image_path, position, size=None, upper_limit=None, lower_limit=None, left_limit=None, right_limit=None):
         super().__init__(image_path, position, size)
         self.upper_limit = upper_limit
         self.lower_limit = lower_limit
+        self.left_limit = left_limit
+        self.right_limit = right_limit
         self.selectedRaceIndex = 0
         self.selectedSkinIndex = 0
         self.lives = 1
@@ -32,12 +34,20 @@ class Player(GameObject):
                 self.rect.y -= speed
             elif direction == "up" and (self.lower_limit is None or self.rect.y + speed <= self.lower_limit):
                 self.rect.y += speed
+            elif direction == "right" and (self.left_limit is None or self.rect.x - speed >= self.left_limit):
+                self.rect.x -= speed
+            elif direction == "left" and (self.right_limit is None or self.rect.x + speed <= self.right_limit):
+                self.rect.x += speed
         else:
             if direction == "up" and (self.upper_limit is None or self.rect.y - speed >= self.upper_limit):
                 self.rect.y -= speed
             elif direction == "down" and (self.lower_limit is None or self.rect.y + speed <= self.lower_limit):
                 self.rect.y += speed
-            
+            elif direction == "left" and (self.left_limit is None or self.rect.x - speed >= self.left_limit):
+                self.rect.x -= speed
+            elif direction == "right" and (self.right_limit is None or self.rect.x + speed <= self.right_limit):
+                self.rect.x += speed
+
 
 class Obstacle(pygame.sprite.Sprite):
     def __init__(self, image_path, position, size=(30, 30), speed=5, delete_x= 200):

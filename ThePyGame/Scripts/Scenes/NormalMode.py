@@ -1,7 +1,7 @@
 import pygame
 import sys
 import random
-from pygame.locals import KEYDOWN, KEYUP, K_UP, K_DOWN
+from pygame.locals import KEYDOWN, KEYUP, K_UP, K_DOWN, K_LEFT, K_RIGHT
 
 from GameObjects.GameObject import Player, Obstacle, SmallRocks, Coin
 
@@ -32,6 +32,8 @@ class NormalMode:
 
         self.is_up_key_pressed = False
         self.is_down_key_pressed = False
+        self.is_left_key_pressed = False
+        self.is_right_key_pressed = False
 
         self.obstacle_spawn_timer = pygame.time.get_ticks() 
         self.obstacle_spawn_interval = 1000 
@@ -49,7 +51,7 @@ class NormalMode:
         self.back_text = self.font.render("Back", True, (255, 255, 255))
         self.back_text_rect = self.back_text.get_rect(center=self.back_button_rect.center)
 
-        self.player = Player(f'./ThePyGame/Assets/Players/{game_data.playerIndex}.png', (400, 200), size=(30, 60), upper_limit=50, lower_limit=500)
+        self.player = Player(f'./ThePyGame/Assets/Players/{game_data.playerIndex}.png', (400, 200), size=(30, 60), upper_limit=50, lower_limit=500, left_limit= 190, right_limit=1060)
 
         self.panel_width = 894
         self.panel_height = 100
@@ -150,18 +152,27 @@ class NormalMode:
                 elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                     if self.back_button_rect.collidepoint(event.pos):
                         self.running = False
-
+        
                 elif event.type == KEYDOWN:
                     if event.key == K_UP:
                         self.is_up_key_pressed = True
+                    elif event.key == K_LEFT:
+                        self.is_left_key_pressed = True
+                    elif event.key == K_RIGHT:
+                        self.is_right_key_pressed = True
                     elif event.key == K_DOWN:
                         self.is_down_key_pressed = True
 
                 elif event.type == KEYUP:
                     if event.key == K_UP:
                         self.is_up_key_pressed = False
+                    elif event.key == K_LEFT:
+                        self.is_left_key_pressed = False
+                    elif event.key == K_RIGHT:
+                        self.is_right_key_pressed = False
                     elif event.key == K_DOWN:
                         self.is_down_key_pressed = False
+                    
 
 
             self.update()
@@ -175,6 +186,10 @@ class NormalMode:
             self.player.move("up", 4)
         elif self.is_down_key_pressed:
             self.player.move("down", 4)
+        elif self.is_left_key_pressed:
+            self.player.move("left", 4)
+        elif self.is_right_key_pressed:
+            self.player.move("right", 4)
 
         if pygame.sprite.spritecollide(self.player, self.obstacle_group, False):
             self.game_over_screen()

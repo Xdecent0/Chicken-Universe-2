@@ -21,6 +21,10 @@ class SecretMode(NormalMode):
             self.player.move("up", self.effect_speed, self.effect_inversion)
         elif self.is_down_key_pressed:
             self.player.move("down", self.effect_speed, self.effect_inversion)
+        elif self.is_left_key_pressed:  
+            self.player.move("left", self.effect_speed, self.effect_inversion)
+        elif self.is_right_key_pressed:
+            self.player.move("right", self.effect_speed, self.effect_inversion)
 
         current_time = pygame.time.get_ticks()
         if current_time - self.obstacle_spawn_timer > self.obstacle_spawn_interval:

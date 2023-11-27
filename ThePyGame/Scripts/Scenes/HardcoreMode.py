@@ -13,6 +13,10 @@ class HardcoreMode(NormalMode):
             self.player.move("up", 4)
         elif self.is_down_key_pressed:
             self.player.move("down", 4)
+        elif self.is_left_key_pressed:
+            self.player.move("left", 4)
+        elif self.is_right_key_pressed:
+            self.player.move("right", 4)
 
         current_time = pygame.time.get_ticks()
         if current_time - self.obstacle_spawn_timer > self.obstacle_spawn_interval:

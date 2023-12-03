@@ -137,9 +137,9 @@ class MainMenu:
 
             pygame.draw.rect(self.screen, panel_bg_color, self.panel1_rect)
 
-            pygame.draw.rect(self.screen, panel_bg_color, self.panel2_rect)
+            pygame.draw.rect(self.screen, (128, 0, 0), self.panel2_rect)
 
-            pygame.draw.rect(self.screen, panel_bg_color, self.panel3_rect)
+            pygame.draw.rect(self.screen, (128, 128, 0), self.panel3_rect)
 
             pygame.draw.rect(self.screen, (255, 255, 255), self.coins_panel_outline_rect, 2)
 

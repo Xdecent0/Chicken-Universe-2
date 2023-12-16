@@ -5,6 +5,7 @@ from Scenes.Settings import SettingsMenu
 from Scenes.HardcoreMode import HardcoreMode
 from Scenes.NormalMode import NormalMode
 from Scenes.SecretMode import SecretMode
+from Scenes.Info import InfoMenu
 
 class MainMenu:
     def __init__(self, width, height, player_data):
@@ -19,6 +20,7 @@ class MainMenu:
         self.settings_icon = pygame.image.load('./ThePyGame/Assets/Icons/Buttons/settings.png')
         self.shop_icon = pygame.image.load('./ThePyGame/Assets/Icons/Buttons/shop.png')
         self.exit_icon = pygame.image.load('./ThePyGame/Assets/Icons/Buttons/exit.png')
+        self.questions_icon = pygame.image.load('./ThePyGame/Assets/Icons/Buttons/question.png')
 
         self.color1 = (146, 106, 255)  # #926AFF
         self.color2 = (66, 77, 252)    # #424DFC
@@ -35,6 +37,7 @@ class MainMenu:
         self.settings_text = self.font.render("Settings", True, (255, 255, 255))
         self.shop_text = self.font.render("Shop", True, (255, 255, 255))
         self.exit_text = self.font.render("Exit", True, (255, 255, 255))
+        self.question_text = self.font.render("Info", True, (255, 255, 255))
 
         self.normal_mode_text = self.font.render("Normal Mode", True, (255, 255, 255))
         self.flappy_mode_text = self.font.render("Hardcore Mode", True, (255, 255, 255))
@@ -48,7 +51,9 @@ class MainMenu:
 
         self.settings_rect = pygame.Rect(self.left_width + (self.right_width - button_width) // 2, top_margin, button_width, button_height)
         self.shop_rect = pygame.Rect(self.left_width + (self.right_width - button_width) // 2, top_margin + gap + button_height, button_width, button_height)
-        self.exit_rect = pygame.Rect(self.left_width + (self.right_width - button_width) // 2, top_margin + 2 * (gap + button_height), button_width, button_height)
+        self.question_rect = pygame.Rect(self.left_width + (self.right_width - button_width) // 2, top_margin + 2 * (gap + button_height), button_width, button_height)
+        self.exit_rect = pygame.Rect(self.left_width + (self.right_width - button_width) // 2, top_margin + 3 * (gap + button_height), button_width, button_height)
+
 
         outline_thickness = 4
         self.settings_outline_rect = pygame.Rect(self.settings_rect.x - outline_thickness, self.settings_rect.y - outline_thickness,
@@ -57,6 +62,8 @@ class MainMenu:
                                              self.shop_rect.width + 2 * outline_thickness, self.shop_rect.height + 2 * outline_thickness)
         self.exit_outline_rect = pygame.Rect(self.exit_rect.x - outline_thickness, self.exit_rect.y - outline_thickness,
                                              self.exit_rect.width + 2 * outline_thickness, self.exit_rect.height + 2 * outline_thickness)
+        self.question_outline_rect = pygame.Rect(self.question_rect.x - outline_thickness, self.question_rect.y - outline_thickness,
+                                             self.question_rect.width + 2 * outline_thickness, self.question_rect.height + 2 * outline_thickness)
         
 
         
@@ -69,14 +76,17 @@ class MainMenu:
         self.settings_text_rect = self.settings_text.get_rect()
         self.shop_text_rect = self.shop_text.get_rect()
         self.exit_text_rect = self.exit_text.get_rect()
+        self.question_text_rect = self.question_text.get_rect()
 
         self.settings_text_rect.topleft = (self.settings_rect.x + icon_left_offset + self.settings_icon.get_width() + icon_text_gap, self.settings_rect.y + (self.settings_rect.height - self.settings_text_rect.height) // 2)
         self.shop_text_rect.topleft = (self.shop_rect.x + icon_left_offset + self.shop_icon.get_width() + icon_text_gap, self.shop_rect.y + (self.shop_rect.height - self.shop_text_rect.height) // 2)
         self.exit_text_rect.topleft = (self.exit_rect.x + icon_left_offset + self.exit_icon.get_width() + icon_text_gap, self.exit_rect.y + (self.exit_rect.height - self.exit_text_rect.height) // 2)
+        self.question_text_rect.topleft = (self.question_rect.x + icon_left_offset + self.questions_icon.get_width() + icon_text_gap, self.question_rect.y + (self.question_rect.height - self.question_text_rect.height) // 2)
 
         self.settings_text_rect.x = min(self.settings_text_rect.x, self.settings_rect.x + self.settings_rect.width - text_right_offset - self.settings_text_rect.width)
         self.shop_text_rect.x = min(self.shop_text_rect.x, self.shop_rect.x + self.shop_rect.width - text_right_offset - self.shop_text_rect.width)
         self.exit_text_rect.x = min(self.exit_text_rect.x, self.exit_rect.x + self.exit_rect.width - text_right_offset - self.exit_text_rect.width)
+        self.question_text_rect.x = min(self.question_text_rect.x, self.question_rect.x + self.question_rect.width - text_right_offset - self.question_text_rect.width)
 
         panel_gap = 20
         panel_width = self.left_width - panel_gap * 2
@@ -116,10 +126,12 @@ class MainMenu:
             pygame.draw.rect(self.screen, (255, 255, 255), self.settings_outline_rect, 2)
             pygame.draw.rect(self.screen, (255, 255, 255), self.shop_outline_rect, 2)
             pygame.draw.rect(self.screen, (255, 255, 255), self.exit_outline_rect, 2)
+            pygame.draw.rect(self.screen, (255, 255, 255), self.question_outline_rect, 2)
 
             pygame.draw.rect(self.screen, self.button_color, self.settings_rect)
             pygame.draw.rect(self.screen, self.button_color, self.shop_rect)
             pygame.draw.rect(self.screen, self.button_color, self.exit_rect)
+            pygame.draw.rect(self.screen, self.button_color, self.question_rect)
 
             pygame.draw.rect(self.screen, self.coins_panel_color, self.coins_panel_rect)
 
@@ -128,10 +140,12 @@ class MainMenu:
             self.screen.blit(pygame.transform.scale(self.settings_icon, icon_size), (self.settings_rect.x + icon_left_offset, self.settings_rect.centery - icon_size[1] // 2))
             self.screen.blit(pygame.transform.scale(self.shop_icon, icon_size), (self.shop_rect.x + icon_left_offset, self.shop_rect.centery - icon_size[1] // 2))
             self.screen.blit(pygame.transform.scale(self.exit_icon, icon_size), (self.exit_rect.x + icon_left_offset, self.exit_rect.centery - icon_size[1] // 2))
+            self.screen.blit(pygame.transform.scale(self.questions_icon, icon_size), (self.question_rect.x + icon_left_offset, self.question_rect.centery - icon_size[1] // 2))
 
             self.screen.blit(self.settings_text, self.settings_text_rect)
             self.screen.blit(self.shop_text, self.shop_text_rect)
             self.screen.blit(self.exit_text, self.exit_text_rect)
+            self.screen.blit(self.question_text, self.question_text_rect)
 
             panel_bg_color = (66, 136, 252)  
 
@@ -221,6 +235,9 @@ class MainMenu:
                 elif self.settings_rect.collidepoint(event.pos):
                     settings_menu = SettingsMenu(self.width, self.height, self.player_data)
                     settings_menu.run()
+                elif self.question_rect.collidepoint(event.pos):
+                    info_menu = InfoMenu(self.width, self.height, self.player_data)
+                    info_menu.run()
                 
                 elif self.panel1_rect.collidepoint(event.pos) and self.play_button_rect1.collidepoint(event.pos):
                     normal_mode = NormalMode(self.width, self.height, self.player_data)
